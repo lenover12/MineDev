@@ -1,0 +1,10 @@
+requests
+Flask
+Jinja2
+Werkzeug
+googletrans
+translate
+Jinja2
+dnspython
+boto3
+mcstatus

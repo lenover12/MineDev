@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MineDev</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../static/style.css">
+</head>
+
+<body>
+
+  <div class="sidenav">
+    <a href="/player_lookup"><img src="{{ url_for('static', filename=nav_icon_paths[0]) }}" alt="Player Info" width="125" height="125"></a>
+    <br>
+    <a href="server_lookup"><img src="{{ url_for('static', filename=nav_icon_paths[1]) }}" alt="Server Lookup" width="125" height="125"></a>
+    <br>
+    <a href="translate"><img src="{{ url_for('static', filename=nav_icon_paths[2]) }}" alt="Translate" width="125" height="125"></a>
+    <br>
+    <a href="block_information"><img src="{{ url_for('static', filename=nav_icon_paths[3]) }}" alt="Block Info" width="125" height="125"></a>
+    <br>
+    <a href="book_formatter"><img src="{{ url_for('static', filename=nav_icon_paths[4]) }}" alt="Book Formater" width="125" height="125"></a>
+    <br>
+    <a href="networking"><img src="{{ url_for('static', filename=nav_icon_paths[5]) }}" alt="Share" width="125" height="125"></a>
+  </div>
+
+  <div class="main">
+    <br>
+    <h1>{{page_name}}</h1>
+    <br>
+
+    <form method="POST" action="/server_lookup">
+        <label for="server_address">Server Address (IP or DNS):</label>
+        <input type="text" id="server_address" name="server_address" required>
+        <br>
+        <label for="server_port">Server Port:</label>
+        <input type="number" id="server_port" name="server_port" value="25565">
+        <br>
+        <button type="submit">Check Server Status</button>
+    </form>
+
+    {% if response %}
+      <p>IP Address: {{ server_info.ip_address }}</p>
+      <p>MOTD: {{ server_info.motd }}</p>
+      <p>Players: {{ server_info.players }}</p>
+      <p>Version: {{ server_info.version }}</p>
+      <p>Ping: {{ server_info.ping }}</p>
+    {% endif %}
+    {% if error_message %}
+        <h3>{{ error_message }}</h3>
+    {% endif %}
+  </div>
+</body>
+</html>

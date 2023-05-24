@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MineDev</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../static/style.css">
+</head>
+
+
+<body>
+
+  <div class="sidenav">
+    <a href="/player_lookup"><img src="{{ url_for('static', filename=nav_icon_paths[0]) }}" alt="Player Info" width="125" height="125"></a>
+    <br>
+    <a href="server_lookup"><img src="{{ url_for('static', filename=nav_icon_paths[1]) }}" alt="Server Lookup" width="125" height="125"></a>
+    <br>
+    <a href="translate"><img src="{{ url_for('static', filename=nav_icon_paths[2]) }}" alt="Translate" width="125" height="125"></a>
+    <br>
+    <a href="block_information"><img src="{{ url_for('static', filename=nav_icon_paths[3]) }}" alt="Block Info" width="125" height="125"></a>
+    <br>
+    <a href="book_formatter"><img src="{{ url_for('static', filename=nav_icon_paths[4]) }}" alt="Book Formater" width="125" height="125"></a>
+    <br>
+    <a href="networking"><img src="{{ url_for('static', filename=nav_icon_paths[5]) }}" alt="Share" width="125" height="125"></a>
+  </div>
+  
+  
+  <div class="main">
+    <br>
+    <h1>{{page_name}}</h1>
+    <br>
+    <form action="/block_information" method="post">
+      <button type="submit" name="random">Get Random Item</button>
+  </form>
+  
+  <form action="/block_information" method="post">
+      <input type="text" name="search_query" placeholder="Enter search query" required>
+      <button type="submit" name="search">Search</button>
+  </form>
+  
+
+  {% if search_results %}
+  {% for item in search_results %}
+    <h3>Title: {{ item['title_f'] }}</h3>
+    <p>Description: {{ item['summary'] }}</p>
+    <p>Link: <a href="{{ item['url'] }}">{{ item['title_f'] }}'s wiki page</a></p>
+    {% if item['display_type'] == 'image' %}
+      <img src="{{ item['image'] }}" alt="Image">
+    {% elif item['display_type'] == 'audio' %}
+      <audio controls><source src="{{ item['image'] }}" type="audio/mpeg"></audio>
+    {% elif item['display_type'] == 'video' %}
+      <video controls><source src="{{ item['image'] }}" type="video/mp4"></video>
+    {% endif %}
+    <hr>
+  {% endfor %}
+{% endif %}
+
+
+  {% if searched_item %}
+  <p>{{ search_results }}</p>
+  {% endif %}
+
+
+  {% if error_message %}
+      <p>{{ error_message }}</p>
+  {% endif %}
+  </div>
+     
+</body>

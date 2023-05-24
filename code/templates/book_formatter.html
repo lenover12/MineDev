@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MineDev</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../static/style.css">
+<link rel="stylesheet" type="text/css" href="../static/color-dropdown.css">
+</head>
+
+<body>
+
+  <div class="sidenav">
+    <a href="/player_lookup"><img src="{{ url_for('static', filename=nav_icon_paths[0]) }}" alt="Player Info" width="125" height="125"></a>
+    <br>
+    <a href="server_lookup"><img src="{{ url_for('static', filename=nav_icon_paths[1]) }}" alt="Server Lookup" width="125" height="125"></a>
+    <br>
+    <a href="translate"><img src="{{ url_for('static', filename=nav_icon_paths[2]) }}" alt="Translate" width="125" height="125"></a>
+    <br>
+    <a href="block_information"><img src="{{ url_for('static', filename=nav_icon_paths[3]) }}" alt="Block Info" width="125" height="125"></a>
+    <br>
+    <a href="book_formatter"><img src="{{ url_for('static', filename=nav_icon_paths[4]) }}" alt="Book Formater" width="125" height="125"></a>
+    <br>
+    <a href="networking"><img src="{{ url_for('static', filename=nav_icon_paths[5]) }}" alt="Share" width="125" height="125"></a>
+  </div>
+
+  <div class="main">
+    <br>
+    <h1>{{ page_name }}</h1>
+    <br>
+    <form id="book-form" action="/book_formatter" method="POST">
+      <div class="textarea-container">
+        <textarea name="book_text" placeholder="Book text goes here" rows="5" cols="50" required>{{ translation }}</textarea><br>
+      </div>
+      <select name="color">
+        <option value="" class="color-option">Select a color</option>
+        <option value="white" class="color-option">White</option>
+        <option value="black" class="color-option">Black</option>
+        <option value="dark_blue" class="color-option">Dark Blue</option>
+        <option value="dark_green" class="color-option">Dark Green</option>
+        <option value="dark_aqua" class="color-option">Dark Aqua</option>
+        <option value="dark_red" class="color-option">Dark Red</option>
+        <option value="dark_purple" class="color-option">Dark Purple</option>
+        <option value="gold" class="color-option">Gold</option>
+        <option value="gray" class="color-option">Gray</option>
+        <option value="dark_gray" class="color-option">Dark Gray</option>
+        <option value="blue" class="color-option">Blue</option>
+        <option value="green" class="color-option">Green</option>
+        <option value="aqua" class="color-option">Aqua</option>
+        <option value="red" class="color-option">Red</option>
+        <option value="light_purple" class="color-option">Light Purple</option>
+        <option value="yellow" class="color-option">Yellow</option>
+      </select>
+      <input type="text" name="title" placeholder="Book title" required><br>
+      <button type="submit">Generate Book</button>
+    </form>
+    {% if book_text %}
+      <h3>Generated Book Text:</h3>
+      <pre>{{ book_text }}</pre>
+    {% endif %}
+  </div>
+  
+</body>
+</html>

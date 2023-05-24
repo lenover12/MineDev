@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MineDev</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../static/style.css">
+</head>
+
+<body>
+
+  <div class="sidenav">
+    <a href="/player_lookup"><img src="{{ url_for('static', filename=nav_icon_paths[0]) }}" alt="Player Info" width="125" height="125"></a>
+    <br>
+    <a href="server_lookup"><img src="{{ url_for('static', filename=nav_icon_paths[1]) }}" alt="Server Lookup" width="125" height="125"></a>
+    <br>
+    <a href="translate"><img src="{{ url_for('static', filename=nav_icon_paths[2]) }}" alt="Translate" width="125" height="125"></a>
+    <br>
+    <a href="block_information"><img src="{{ url_for('static', filename=nav_icon_paths[3]) }}" alt="Block Info" width="125" height="125"></a>
+    <br>
+    <a href="book_formatter"><img src="{{ url_for('static', filename=nav_icon_paths[4]) }}" alt="Book Formater" width="125" height="125"></a>
+    <br>
+    <a href="networking"><img src="{{ url_for('static', filename=nav_icon_paths[5]) }}" alt="Share" width="125" height="125"></a>
+  </div>
+
+  <div class="main">
+    <br>
+    <h1>{{ page_name }}</h1>
+    <br>
+    <p>Feel free to share a screenshot and file upload of your creation to the owner of MineDev</p>
+    <p>You won't be able to access your uploads, nor will they be available to the public</p>
+    <br>
+    <form action="/networking" method="POST" enctype="multipart/form-data">
+      <label for="file">File . </label>
+      <input type="file" id="file" name="file">
+      <br>
+      <p> </p>
+      <label for="picture">Picture.</label>
+      <input type="file" id="picture" name="picture" accept="image/*">
+      <br>
+      <p> </p>
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+  
+    {% if image_file_pairs %}
+    <div class="images">
+      {% for image_url, file_url in image_file_pairs %}
+        <div class="image">
+          <img src="{{ image_url }}" alt="Image">
+          <a href="{{ file_url }}" download>Download File</a>
+        </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </body>
+  </html>

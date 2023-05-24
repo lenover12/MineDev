@@ -1,0 +1,214 @@
+@font-face {
+  font-family: 'Minecraft';
+  src: url('/static/fonts/Minecraft.ttf');
+}
+
+
+body {
+  font-family: "Lato", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: #e7defc;
+  height: 98vh;
+  background-image: url("../static/image/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+input[type=button], input[type=submit], input[type=reset], input [type=file] {
+  background-color: #fffb00;
+  border: none;
+  color: rgb(0, 0, 0);
+  padding: 16px 48px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+
+.sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #fcf8ae;
+  overflow-x: hidden;
+  padding-top: 20px;
+  background-image: url("../static/image/background_nav.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.sidenav a {
+  padding: 6px 6px 6px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.main {
+  margin-left: 200px; /* Same as the width of the sidenav */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+
+h1 {
+  /* font-size: xxx-large; */
+  font-size: 5vw;
+  font-family: 'Minecraft', sans-serif;
+}
+
+h2, h3 {
+  font-family: 'Minecraft', sans-serif;
+}
+
+
+input[type=text], input[type=textarea] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 3px solid #ccc;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+}
+
+input[type=text]:focus, input[type=textarea]:focus {
+  border: 3px solid #555;
+}
+
+.color-option {
+  padding: 2px;
+}
+
+.color-option[value="white"] {
+  background-color: white;
+  color: black;
+}
+
+.color-option[value="black"] {
+  background-color: black;
+  color: white;
+}
+
+.color-option[value="dark_blue"] {
+  background-color: darkblue;
+  color: white;
+}
+
+.color-option[value="dark_green"] {
+  background-color: darkgreen;
+  color: white;
+}
+
+.color-option[value="dark_aqua"] {
+  background-color: darkcyan;
+  color: white;
+}
+
+.color-option[value="dark_red"] {
+  background-color: darkred;
+  color: white;
+}
+
+.color-option[value="dark_purple"] {
+  background-color: darkviolet;
+  color: white;
+}
+
+.color-option[value="gold"] {
+  background-color: gold;
+  color: black;
+}
+
+.color-option[value="gray"] {
+  background-color: gray;
+  color: white;
+}
+
+.color-option[value="dark_gray"] {
+  background-color: darkgray;
+  color: white;
+}
+
+.color-option[value="blue"] {
+  background-color: blue;
+  color: white;
+}
+
+.color-option[value="green"] {
+  background-color: green;
+  color: white;
+}
+
+.color-option[value="aqua"] {
+  background-color: aqua;
+  color: black;
+}
+
+.color-option[value="red"] {
+  background-color: red;
+  color: white;
+}
+
+.color-option[value="light_purple"] {
+  background-color: mediumpurple;
+  color: black;
+}
+
+.color-option[value="yellow"] {
+  background-color: yellow;
+  color: black;
+}
+
+.textarea-container {
+  position: relative;
+}
+
+.textarea-container textarea {
+  width: 255px;
+  height: 340px;
+  resize: none;
+  background: transparent;
+  border: none;
+  padding: 20px;
+  font-size: x-large;
+  font-family: 'Minecraft', sans-serif;
+}
+
+.textarea-container:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 275px;
+  height: 360px;
+  background-image: url(image/book_background.png);
+  background-size: cover;
+  opacity: 0.5;
+  z-index: -1;
+}
+
+textarea[name="book_text"] {
+  width: 255px;
+  height: 340px;
+  font-size: x-large;
+  font-family: 'Minecraft', sans-serif;
+}

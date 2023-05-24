@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MineDev</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../static/style.css">
+</head>
+
+
+<body>
+
+  <div class="sidenav">
+    <a href="/player_lookup"><img src="{{ url_for('static', filename=nav_icon_paths[0]) }}" alt="Player Info" width="125" height="125"></a>
+    <br>
+    <a href="server_lookup"><img src="{{ url_for('static', filename=nav_icon_paths[1]) }}" alt="Server Lookup" width="125" height="125"></a>
+    <br>
+    <a href="translate"><img src="{{ url_for('static', filename=nav_icon_paths[2]) }}" alt="Translate" width="125" height="125"></a>
+    <br>
+    <a href="block_information"><img src="{{ url_for('static', filename=nav_icon_paths[3]) }}" alt="Block Info" width="125" height="125"></a>
+    <br>
+    <a href="book_formatter"><img src="{{ url_for('static', filename=nav_icon_paths[4]) }}" alt="Book Formater" width="125" height="125"></a>
+    <br>
+    <a href="networking"><img src="{{ url_for('static', filename=nav_icon_paths[5]) }}" alt="Share" width="125" height="125"></a>
+  </div>
+  
+  
+  <div class="main">
+    <br>
+    <h1>{{page_name}}</h1>
+    <br>
+    <form action="/player_lookup" method="POST">
+      <input type="text" name="player_name" placeholder="Enter player name" required>
+      <button type="submit">Search</button>
+    </form>
+    {% if player_data %}
+    <h2>Player Information</h2>
+    <p>Name: {{ player_data['name'] }}</p>
+    <p>UUID: {{ player_data['id'] }}</p>
+    {% if player_data['properties'] %}
+      <h3>Textures</h3>
+      {% for property in player_data['properties'] %}
+        {% if property['name'] == 'textures' %}
+          {% set textures_data = property['value'] | b64decode | from_json %}
+          {% set skin_data = textures_data['textures']['SKIN'] %}
+          {% if 'metadata' in skin_data and 'model' in skin_data['metadata'] %}
+            <p>Skin Model: {{ skin_data['metadata']['model'] }}</p>
+          {% endif %}
+          {% set cape_data = textures_data['textures']['CAPE'] %}
+          {% if skin_data %}
+            <p>Skin:</p>
+            <img src="{{ skin_data['url'] }}" alt="Skin" height="100">
+          {% endif %}
+          {% if cape_data %}
+            <p>Cape:</p>
+            <img src="{{ cape_data['url'] }}" alt="Cape" height="100">
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  {% elif error %}
+    <p>{{ error }}</p>
+  {% endif %}
+  </div>
+     
+</body>
